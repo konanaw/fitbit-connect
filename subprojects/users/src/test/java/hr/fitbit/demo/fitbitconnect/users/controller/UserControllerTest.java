@@ -43,12 +43,6 @@ import hr.fitbit.demo.fitbitconnect.users.service.UserService;
 public class UserControllerTest extends ControllerTestSupport {
 
     @MockBean
-    private UserRepository userRepository;
-
-    @MockBean
-    private RoleRepository roleRepository;
-
-    @MockBean
     private UserService userService;
 
     @Test

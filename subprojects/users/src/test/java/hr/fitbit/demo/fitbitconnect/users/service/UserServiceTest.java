@@ -1,6 +1,10 @@
 package hr.fitbit.demo.fitbitconnect.users.service;
 
-import hr.fitbit.demo.fitbitconnect.apisupport.apimodel.user.*;
+import hr.fitbit.demo.fitbitconnect.apisupport.apimodel.user.User;
+import hr.fitbit.demo.fitbitconnect.apisupport.apimodel.user.UserRegister;
+import hr.fitbit.demo.fitbitconnect.apisupport.apimodel.user.UserResponse;
+import hr.fitbit.demo.fitbitconnect.apisupport.apimodel.user.UserType;
+import hr.fitbit.demo.fitbitconnect.apisupport.apimodel.user.UserUpdate;
 import hr.fitbit.demo.fitbitconnect.dao.entity.RoleEntity;
 import hr.fitbit.demo.fitbitconnect.dao.entity.UserEntity;
 import hr.fitbit.demo.fitbitconnect.dao.fixture.RoleFixture;
@@ -12,13 +16,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -29,17 +32,10 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-@ContextConfiguration(classes = TestApplication.class)
-@SpringBootTest(properties = {
-        "spring.sql.init.url=jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE",
-        "spring.sql.init.driver-class-name=org.h2.Driver",
-        "spring.sql.init.username=user",
-        "spring.sql.init.password=pass",
-        "spring.jpa.hibernate.ddl-auto=update",
-        "spring.jpa.show-sql=true"
-}
-)
+@EnableJpaRepositories(basePackageClasses = {UserRepository.class,  RoleRepository.class})
+//@EnableJpaRepositories(basePackages = "hr.fitbit.demo.fitbitconnect.dao.repository")
+@EntityScan(basePackageClasses = {UserEntity.class, RoleEntity.class})
+@SpringBootTest(classes = TestApplication.class)
 public class UserServiceTest {
 
     private static final String USERNAME_COLUMN = "username";
