@@ -43,10 +43,10 @@
             <artifactId>api-support</artifactId>
         </dependency>
         <!--[Spring Boot 2.6.1 and SpringDoc 1.5.13] Fixes the problem: Failed to introspect Class [org.springdoc.security.SpringDocSecurityConfiguration...-->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-security</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springdoc</groupId>-->
+<!--            <artifactId>springdoc-openapi-security</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
