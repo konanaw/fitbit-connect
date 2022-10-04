@@ -1,12 +1,10 @@
 package hr.fitbit.demo.fitbitconnect.fitbitclient.controller;
 
-import hr.fitbit.demo.fitbitconnect.testsupport.TestApplication;
 import hr.fitbit.demo.fitbitconnect.apisupport.apimodel.fitbit.TokenResponse;
 import hr.fitbit.demo.fitbitconnect.apisupport.apimodel.fitbit.UserActivityResponse;
+import hr.fitbit.demo.fitbitconnect.testsupport.TestApplication;
 import hr.fitbit.demo.fitbitconnect.testsupport.controller.ControllerTestSupport;
 import hr.fitbit.demo.fitbitconnect.testsupport.fixture.FitbitFixture;
-import hr.fitbit.demo.fitbitconnect.dao.repository.RoleRepository;
-import hr.fitbit.demo.fitbitconnect.dao.repository.UserRepository;
 import hr.fitbit.demo.fitbitconnect.fitbitclient.service.FitbitService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -26,12 +24,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ContextConfiguration(classes = TestApplication.class)
 @WebMvcTest(FitbitController.class)
 public class FitbitControllerTest extends ControllerTestSupport {
-
-    @MockBean
-    private UserRepository userRepository;
-
-    @MockBean
-    private RoleRepository roleRepository;
 
     @MockBean
     private FitbitService fitbitService;

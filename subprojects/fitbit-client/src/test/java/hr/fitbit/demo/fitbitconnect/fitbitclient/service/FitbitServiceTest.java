@@ -16,10 +16,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,6 +35,9 @@ import static org.mockito.Mockito.when;
 
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @ContextConfiguration(classes = TestApplication.class)
+@EnableJpaRepositories(basePackageClasses = {UserRepository.class,  RoleRepository.class})
+//@EnableJpaRepositories(basePackages = "hr.fitbit.demo.fitbitconnect.dao.repository")
+@EntityScan(basePackageClasses = {UserEntity.class, RoleEntity.class})
 @SpringBootTest(properties = {
         "spring.sql.init.url=jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE",
         "spring.sql.init.driver-class-name=org.h2.Driver",
@@ -40,7 +45,9 @@ import static org.mockito.Mockito.when;
         "spring.sql.init.password=pass",
         "spring.sql.init.initialize=true",
         "spring.jpa.hibernate.ddl-auto=update",
-        "spring.jpa.show-sql=true"
+        "spring.jpa.show-sql=true",
+        "app.release.version=0.0.1",
+        "app.build.version=FITBIT.TEST"
 }
 )
 public class FitbitServiceTest {
